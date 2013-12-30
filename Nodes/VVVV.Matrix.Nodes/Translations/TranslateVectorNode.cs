@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name="Translate",Category="Transform", Version="Vector")]
+    [PluginInfo(Name = "Translate", Category = "Matrix", Version = "Vector")]
     public class TranslateVectorNode : IPluginEvaluate
     {
         [Input("Transform In")]

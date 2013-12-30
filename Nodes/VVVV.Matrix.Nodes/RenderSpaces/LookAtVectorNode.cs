@@ -9,20 +9,26 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name = "ApplyTransform", Category = "Matrix", Version = "Vector")]
-    public class ApplyTransformVectorNode : IPluginEvaluate
+    [PluginInfo(Name = "LookAt", Category = "Matrix", Version="Vector")]
+    public class LookAtVectorNode : IPluginEvaluate
     {
-        [Input("Transform")]
+        [Input("Transform In")]
         protected MatrixInput TransformIn;
 
-        [Input("XYZ UnTransformed")]
-        protected FastValueInput XYZIn;
+        [Input("Position XYZ")]
+        protected FastValueInput Position;
 
-        [Input("Threaded", IsSingle=true)]
+        [Input("Target XYZ")]
+        protected FastValueInput Target;
+
+        [Input("UpVector XYZ")]
+        protected FastValueInput Up;
+
+        [Input("Threaded", IsSingle = true)]
         protected ISpread<bool> Threaded;
 
-        [Input("XYZ Transformed")]
-        protected ValueOutput XYZOut;
+        [Input("Transform Out")]
+        protected MatrixOutput TransformOut;
 
         public void Evaluate(int SpreadMax)
         {

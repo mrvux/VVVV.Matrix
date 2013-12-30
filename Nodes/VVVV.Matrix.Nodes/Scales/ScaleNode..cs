@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name="Scale",Category="Transform")]
+    [PluginInfo(Name = "Scale", Category = "Matrix")]
     public class ScaleNode : IPluginEvaluate
     {
         [Input("Transform In")]

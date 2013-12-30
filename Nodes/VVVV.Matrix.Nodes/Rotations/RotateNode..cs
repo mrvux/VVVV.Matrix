@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name="Rotate",Category="Transform")]
+    [PluginInfo(Name="Rotate",Category="Matrix")]
     public class RotateNode : IPluginEvaluate
     {
         [Input("Transform In")]

@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderSpaces\LookAtVectorNode.cs" />
     <Compile Include="RenderSpaces\OrthoNode..cs" />
     <Compile Include="Rotations\RotateNode..cs" />
     <Compile Include="Rotations\RotateVectorNode.cs" />

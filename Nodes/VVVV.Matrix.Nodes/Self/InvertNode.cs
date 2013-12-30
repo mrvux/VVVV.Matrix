@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name="Inverse",Category="Transform")]
+    [PluginInfo(Name = "Inverse", Category = "Matrix")]
     public class InvertNode : IPluginEvaluate
     {
         [Input("Transform In")]

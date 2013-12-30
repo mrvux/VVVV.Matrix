@@ -9,7 +9,7 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name="ApplyTransform",Category="Transform")]
+    [PluginInfo(Name = "ApplyTransform", Category = "TraMatrixnsform")]
     public class ApplyTransformNode : IPluginEvaluate
     {
         [Input("Transform")]
