@@ -54,6 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2d\Transform2DNode - Copy.cs" />
+    <Compile Include="2d\Transform2DVectorNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderSpaces\LookAtVectorNode.cs" />
     <Compile Include="RenderSpaces\OrthoNode..cs" />
@@ -71,7 +73,6 @@
     <Compile Include="VectorTransform\ApplyTransformNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="2d\" />
     <Folder Include="3d\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
