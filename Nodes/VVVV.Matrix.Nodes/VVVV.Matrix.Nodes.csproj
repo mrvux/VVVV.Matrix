@@ -60,10 +60,14 @@
     <Compile Include="Rotations\RotateVectorNode.cs" />
     <Compile Include="Scales\ScaleVectorNode.cs" />
     <Compile Include="Scales\UniformScaleNode.cs" />
+    <Compile Include="Self\TransposeNode.cs" />
+    <Compile Include="Self\InvertNode.cs" />
     <Compile Include="Stubs\MatrixInput.cs" />
     <Compile Include="Scales\ScaleNode..cs" />
     <Compile Include="Translations\TranslateVectorNode.cs" />
     <Compile Include="Translations\TranslateNode.cs" />
+    <Compile Include="VectorTransform\ApplyTransformVectorNode.cs" />
+    <Compile Include="VectorTransform\ApplyTransformNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2d\" />
