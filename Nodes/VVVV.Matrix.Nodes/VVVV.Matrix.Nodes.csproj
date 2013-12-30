@@ -56,7 +56,9 @@
   <ItemGroup>
     <Compile Include="2d\Transform2DNode - Copy.cs" />
     <Compile Include="2d\Transform2DVectorNode.cs" />
+    <Compile Include="GetSet\SetMatrixNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GetSet\GetMatrixNode.cs" />
     <Compile Include="RenderSpaces\LookAtVectorNode.cs" />
     <Compile Include="RenderSpaces\OrthoNode..cs" />
     <Compile Include="Rotations\RotateNode..cs" />
