@@ -95,6 +95,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="MatrixOperators.cpp" />
+    <ClCompile Include="Rotations.cpp" />
     <ClCompile Include="Scales.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

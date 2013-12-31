@@ -46,7 +46,7 @@ void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, 
 			for (int i = 0; i < totallength; i++)
 			{
 				Vector3d d = data[i];
-				outptr[i] = XMMatrixTranslation(d.x, d.y, d.z);
+				outptr[i] = XMMatrixScaling(d.x, d.y, d.z);
 			}
 		}
 	}
@@ -80,7 +80,7 @@ void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin,
 			for (int i = 0; i < totallength; i++)
 			{
 				Vector3d d = data[i%vcount];
-				outptr[i] = XMMatrixMultiply(XMMatrixTranslation(d.x, d.y, d.z), matrixin.GetSlice(i));
+				outptr[i] = XMMatrixMultiply(XMMatrixScaling(d.x, d.y, d.z), matrixin.GetSlice(i));
 			}
 		}
 	}
