@@ -1,6 +1,7 @@
 #pragma once
 
 #include <DirectXMath.h>
+#include <malloc.h>
 
 namespace vmat
 {
@@ -30,6 +31,49 @@ namespace vmat
 	{
 		T* DataPointer;
 		int ElementCount;
+		inline T* GetSlicePointer(int slice) { return &DataPointer[slice % ElementCount]; }
+		inline T GetSlice(int slice) { return DataPointer[slice % ElementCount]; }
+	};
+
+	template <typename T, int A>
+	struct WriteablePointerTemplate
+	{
+		T* DataPointer = nullptr;
+		int ElementCount = 0;
+
+		~WriteablePointerTemplate()
+		{
+			if (DataPointer)
+			{
+				_aligned_free(DataPointer);
+			}
+		}
+
+		inline void SetSliceCount(int count)
+		{
+			if (ElementCount != count)
+			{
+				if (ElementCount == 0)
+				{
+					_aligned_free(DataPointer);
+					DataPointer = 0;
+				}
+				else
+				{
+					if (DataPointer)
+					{
+						DataPointer = _aligned_realloc(DataPointer, sizeof(T)* count, A);
+					}
+					else
+					{
+						DataPointer = _aligned_malloc(sizeof(T)* count, A);
+					}
+				}
+
+				ElementCount = count;
+			}
+		}
+
 		inline T* GetSlicePointer(int slice) { return &DataPointer[slice % ElementCount]; }
 		inline T GetSlice(int slice) { return DataPointer[slice % ElementCount]; }
 	};
@@ -90,7 +134,7 @@ namespace vmat
 	};
 
 	typedef PointerTemplate<double> DoublePointer;
-	typedef PointerTemplate<DirectX::XMMATRIX> MatrixPointer;
+	typedef WriteablePointerTemplate<DirectX::XMMATRIX,16> MatrixPointer;
 
 	typedef VectorTemplate<Vector2d, 2> Vector2dPointer;
 	typedef VectorTemplate<Vector3d, 3> Vector3dPointer;
