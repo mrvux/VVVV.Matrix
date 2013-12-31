@@ -62,11 +62,11 @@ namespace vmat
 				{
 					if (DataPointer)
 					{
-						DataPointer = _aligned_realloc(DataPointer, sizeof(T)* count, A);
+						DataPointer = (T*)_aligned_realloc(DataPointer, sizeof(T)* count, A);
 					}
 					else
 					{
-						DataPointer = _aligned_malloc(sizeof(T)* count, A);
+						DataPointer = (T*)_aligned_malloc(sizeof(T)* count, A);
 					}
 				}
 
