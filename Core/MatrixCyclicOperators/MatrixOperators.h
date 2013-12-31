@@ -44,3 +44,4 @@ __declspec(dllexport) void __cdecl LookToCyclic(vmat::MatrixPointer result, vmat
 __declspec(dllexport) void __cdecl TransposeCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded);
 __declspec(dllexport) void __cdecl InvertCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded);
 
+__declspec(dllexport) void __cdecl GetMatrix(vmat::DoublePointer output, vmat::MatrixPointer input, bool threaded);
