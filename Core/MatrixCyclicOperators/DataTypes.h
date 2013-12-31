@@ -14,12 +14,15 @@ namespace vmat
 	{
 		double x;
 		double y;
+		double z;
 	};
 
 	struct Vector4d
 	{
 		double x;
 		double y;
+		double z;
+		double w;
 	};
 
 	template <typename T>
@@ -35,10 +38,9 @@ namespace vmat
 	struct VectorTemplate
 	{
 		double* DataPointer;
-		int SliceCount;
-
-		inline bool IsComplete() { return ElementCount % I == 0; }
-		inline int ElementCount() { return IsComplete() ? SliceCount / I : (SliceCout / I) + 1; }
+		int DataLength;
+		inline bool IsComplete() { return DataLength % I == 0; }
+		inline int VectorCount() { return IsComplete() ? DataLength / I : (DataLength / I) + 1; }
 	};
 
 
@@ -87,11 +89,16 @@ namespace vmat
 		inline T SliceW(int slice) { return z[slice % wcount]; }
 	};
 
+	typedef PointerTemplate<double> DoublePointer;
+	typedef PointerTemplate<DirectX::XMMATRIX> MatrixPointer;
 
-#define DoublePointer PointerTemplate<double>
-#define MatrixPointer PointerTemplate<DirectX::XMMATRIX>
-#define Vector2SOAd Vector2SOA<double>
-#define Vector3SOAd Vector3SOA<double>
-#define Vector4SOAd Vector4SOA<double>
+	typedef VectorTemplate<Vector2d, 2> Vector2dPointer;
+	typedef VectorTemplate<Vector3d, 3> Vector3dPointer;
+	typedef VectorTemplate<Vector4d, 4> Vector4dPointer;
+
+	typedef Vector2SOA<double> Vector2SOAd;
+	typedef Vector3SOA<double> Vector3SOAd;
+	typedef Vector4SOA<double> Vector4SOAd;
+
 }
 
