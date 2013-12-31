@@ -4,7 +4,7 @@
 
 #include <omp.h>
 
-
+__declspec(dllexport) void __cdecl Identity(vmat::MatrixPointer result);
 
 __declspec(dllexport) void __cdecl TranslateCyclic(vmat::MatrixPointer result, vmat::Vector3SOAd vectors, int totallength, bool threaded);
 __declspec(dllexport) void __cdecl TranslateCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd vectors, int totallength, bool threaded);

@@ -8,6 +8,12 @@
 using namespace DirectX;
 using namespace vmat;
 
+void Identity(vmat::MatrixPointer result)
+{
+	result.SetSliceCount(1);
+	result.DataPointer[0] = XMMatrixIdentity();
+}
+
 void InvertCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded)
 {
 	result.SetSliceCount(input.ElementCount);
