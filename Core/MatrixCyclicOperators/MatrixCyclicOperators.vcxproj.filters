@@ -53,5 +53,11 @@
     <ClCompile Include="Rotations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LookAts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projections.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

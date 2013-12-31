@@ -34,7 +34,13 @@ __declspec(dllexport) void __cdecl RotateVectorCyclic(vmat::MatrixPointer result
 __declspec(dllexport) void __cdecl RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::Vector4dPointer input, int totallength, bool threaded);
 __declspec(dllexport) void __cdecl RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector4dPointer input, int totallength, bool threaded);
 
+//LookAt and LookTo
+__declspec(dllexport) void __cdecl LookAtCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd eye, vmat::Vector3SOAd target, vmat::Vector3SOAd up, int totallength, bool threaded);
+__declspec(dllexport) void __cdecl LookToCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd eye, vmat::Vector3SOAd eyedir, vmat::Vector3SOAd up, int totallength, bool threaded);
 
+//Projections Matrices
+
+//Other operators
 __declspec(dllexport) void __cdecl TransposeCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded);
 __declspec(dllexport) void __cdecl InvertCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded);
 

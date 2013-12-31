@@ -87,7 +87,6 @@ namespace vmat
 		inline int VectorCount() { return IsComplete() ? DataLength / I : (DataLength / I) + 1; }
 	};
 
-
 	template <typename T>
 	struct Vector2SOA
 	{
