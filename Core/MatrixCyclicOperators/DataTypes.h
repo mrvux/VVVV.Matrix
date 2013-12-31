@@ -4,6 +4,24 @@
 
 namespace vmat
 {
+	struct Vector2d
+	{
+		double x;
+		double y;
+	};
+
+	struct Vector3d
+	{
+		double x;
+		double y;
+	};
+
+	struct Vector4d
+	{
+		double x;
+		double y;
+	};
+
 	template <typename T>
 	struct PointerTemplate
 	{
@@ -13,6 +31,15 @@ namespace vmat
 		inline T GetSlice(int slice) { return DataPointer[slice % ElementCount]; }
 	};
 
+	template <typename T, int I>
+	struct VectorTemplate
+	{
+		double* DataPointer;
+		int SliceCount;
+
+		inline bool IsComplete() { return ElementCount % I == 0; }
+		inline int ElementCount() { return IsComplete() ? SliceCount / I : (SliceCout / I) + 1; }
+	};
 
 
 	template <typename T>
