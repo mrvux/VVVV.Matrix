@@ -15,6 +15,9 @@ __declspec(dllexport) void __cdecl TranslateVectorCyclic(vmat::MatrixPointer res
 __declspec(dllexport) void __cdecl ScaleCyclic(vmat::MatrixPointer result, vmat::Vector3SOAd vectors, int totallength, bool threaded);
 __declspec(dllexport) void __cdecl ScaleCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd vectors, int totallength, bool threaded);
 
+__declspec(dllexport) void __cdecl ScaleVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, int totallength, bool threaded);
+__declspec(dllexport) void __cdecl ScaleVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded);
+
 __declspec(dllexport) void __cdecl UniformScaleCyclic(vmat::MatrixPointer result, vmat::DoublePointer scaling, int totallength, bool threaded);
 __declspec(dllexport) void __cdecl UniformScaleCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::DoublePointer scaling, int totallength, bool threaded);
 
