@@ -10,7 +10,6 @@ using namespace vmat;
 
 void TranslateCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -24,7 +23,12 @@ void TranslateCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength,
 
 void TranslateCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd vectors, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
+	if (matrixin.DataPointer == 0)
+	{
+		TranslateCyclic(result, vectors, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -38,7 +42,6 @@ void TranslateCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd v
 
 void TranslateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{
@@ -71,7 +74,6 @@ void TranslateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer inp
 
 void TranslateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{

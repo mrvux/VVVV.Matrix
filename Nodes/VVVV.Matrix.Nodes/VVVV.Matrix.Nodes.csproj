@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,10 +30,31 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\..\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.Codeplex">
       <HintPath>..\..\Externals\mef\System.ComponentModel.Composition.Codeplex.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,41 +64,35 @@
     <Reference Include="System.Xml" />
     <Reference Include="VVVV.Core">
       <HintPath>..\..\Externals\vvvv\x86\VVVV.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
       <HintPath>..\..\Externals\vvvv\x86\VVVV.Hosting.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
       <HintPath>..\..\Externals\vvvv\x86\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
       <HintPath>..\..\Externals\vvvv\x86\VVVV.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2d\Transform2DNode - Copy.cs" />
-    <Compile Include="2d\Transform2DVectorNode.cs" />
-    <Compile Include="GetSet\SetMatrixNode.cs" />
+    <Compile Include="GetSet\GetMatrixNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GetSet\IdentityNode.cs" />
+    <Compile Include="GetSet\MatrixHolder.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="PinTemp\MatrixPins.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GetSet\GetMatrixNode.cs" />
-    <Compile Include="RenderSpaces\LookAtVectorNode.cs" />
-    <Compile Include="RenderSpaces\OrthoNode..cs" />
-    <Compile Include="Rotations\RotateNode..cs" />
-    <Compile Include="Rotations\RotateVectorNode.cs" />
-    <Compile Include="Scales\ScaleVectorNode.cs" />
-    <Compile Include="Scales\UniformScaleNode.cs" />
-    <Compile Include="Self\TransposeNode.cs" />
-    <Compile Include="Self\InvertNode.cs" />
-    <Compile Include="Stubs\MatrixInput.cs" />
-    <Compile Include="Scales\ScaleNode..cs" />
-    <Compile Include="Translations\TranslateVectorNode.cs" />
-    <Compile Include="Translations\TranslateNode.cs" />
-    <Compile Include="VectorTransform\ApplyTransformVectorNode.cs" />
-    <Compile Include="VectorTransform\ApplyTransformNode.cs" />
+    <Compile Include="Translations\TranslateNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="3d\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

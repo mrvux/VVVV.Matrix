@@ -7,7 +7,6 @@ using namespace vmat;
 
 void ScaleCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -21,7 +20,6 @@ void ScaleCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength, boo
 
 void ScaleCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd vectors, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -35,7 +33,6 @@ void ScaleCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd vecto
 
 void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{
@@ -68,7 +65,6 @@ void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, 
 
 void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{
@@ -102,7 +98,6 @@ void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin,
 
 void UniformScaleCyclic(MatrixPointer result, DoublePointer scale, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -117,7 +112,6 @@ void UniformScaleCyclic(MatrixPointer result, DoublePointer scale, int totalleng
 
 void UniformScaleCyclic(MatrixPointer result, MatrixPointer matrixin, DoublePointer scale, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
