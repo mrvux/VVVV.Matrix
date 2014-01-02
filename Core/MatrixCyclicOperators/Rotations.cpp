@@ -20,6 +20,12 @@ void RotateCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength, bo
 
 void RotateCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd vectors, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		RotateCyclic(result, vectors, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 #pragma omp parallel if (threaded)
 	{
@@ -65,6 +71,12 @@ void RotateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input,
 
 void RotateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		RotateVectorCyclic(result, input, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{
@@ -131,6 +143,12 @@ void RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::Vector4dPointer in
 
 void RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector4dPointer input, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		RotateQuaternionCyclic(result, input, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{

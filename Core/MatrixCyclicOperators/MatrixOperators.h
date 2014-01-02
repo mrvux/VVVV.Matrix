@@ -26,12 +26,8 @@ __declspec(dllexport) void UniformScaleCyclic(vmat::MatrixPointer result, vmat::
 
 //Rotation Operators
 __declspec(dllexport) void RotateCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd vectors, int totallength, bool threaded);
-
-__declspec(dllexport) void RotateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, int totallength, bool threaded);
-//__declspec(dllexport) void __cdecl RotateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded);
-
-__declspec(dllexport) void RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::Vector4dPointer input, int totallength, bool threaded);
-//__declspec(dllexport) void __cdecl RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector4dPointer input, int totallength, bool threaded);
+__declspec(dllexport) void RotateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded);
+__declspec(dllexport) void RotateQuaternionCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector4dPointer input, int totallength, bool threaded);
 
 //LookAt and LookTo
 __declspec(dllexport) void LookAtCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd eye, vmat::Vector3SOAd target, vmat::Vector3SOAd up, int totallength, bool threaded);
