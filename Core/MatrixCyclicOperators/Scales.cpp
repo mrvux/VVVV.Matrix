@@ -20,6 +20,12 @@ void ScaleCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength, boo
 
 void ScaleCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd vectors, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		ScaleCyclic(result, vectors, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -65,6 +71,12 @@ void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input, 
 
 void ScaleVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		ScaleVectorCyclic(result, input, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{
@@ -112,6 +124,12 @@ void UniformScaleCyclic(MatrixPointer result, DoublePointer scale, int totalleng
 
 void UniformScaleCyclic(MatrixPointer result, MatrixPointer matrixin, DoublePointer scale, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		UniformScaleCyclic(result, scale, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{

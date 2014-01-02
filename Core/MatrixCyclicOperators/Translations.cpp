@@ -74,6 +74,12 @@ void TranslateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer inp
 
 void TranslateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3dPointer input, int totallength, bool threaded)
 {
+	if (matrixin.DataPointer == 0)
+	{
+		TranslateVectorCyclic(result, input, totallength, threaded);
+		return;
+	}
+
 	XMMATRIX* outptr = result.DataPointer;
 	if (input.IsComplete())
 	{

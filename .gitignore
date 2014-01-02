@@ -3,11 +3,13 @@
 [Oo]bj/
 Debug/
 ipch/
+Release/
 
 # Compiled Object files
 *.slo
 *.lo
 *.o
+*.sdf
 
 
 # Compiled Dynamic libraries
