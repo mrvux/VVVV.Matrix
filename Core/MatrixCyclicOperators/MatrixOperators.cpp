@@ -2,22 +2,35 @@
 //
 
 #include "stdafx.h"
-
 #include "MatrixOperators.h"
+
+#include <malloc.h>
 
 using namespace DirectX;
 using namespace vmat;
 
-void Identity(vmat::MatrixPointer result)
+void* Allocate(int size)
 {
-	result.SetSliceCount(1);
-	result.DataPointer[0] = XMMatrixIdentity();
+	return _aligned_malloc(size, 16);
+}
+
+void* Reallocate(void* ptr, int size)
+{
+	return _aligned_realloc(ptr, size, 16);
+}
+
+void Free(void* ptr)
+{
+	_aligned_free(ptr);
+}
+
+void Identity(vmat::MatrixPointer* result)
+{
+	result->DataPointer[0] = XMMatrixIdentity();
 }
 
 void InvertCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded)
 {
-	result.SetSliceCount(input.ElementCount);
-
 	XMMATRIX* inptr = input.DataPointer;
 	XMMATRIX* outptr = result.DataPointer;
 	int t = input.ElementCount;
@@ -34,8 +47,6 @@ void InvertCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool th
 
 void TransposeCyclic(vmat::MatrixPointer result, vmat::MatrixPointer input, bool threaded)
 {
-	result.SetSliceCount(input.ElementCount);
-
 	XMMATRIX* inptr = input.DataPointer;
 	XMMATRIX* outptr = result.DataPointer;
 	int t = input.ElementCount;
@@ -75,10 +86,10 @@ void GetMatrix(vmat::DoublePointer output, vmat::MatrixPointer input, bool threa
 			outptr[i * 16 + 10] = m[10];
 			outptr[i * 16 + 11] = m[11];
 
-			outptr[i * 16+12] = m[0];
-			outptr[i * 16 + 13] = m[1];
-			outptr[i * 16 + 14] = m[2];
-			outptr[i * 16 + 15] = m[3];
+			outptr[i * 16+12] = m[12];
+			outptr[i * 16 + 13] = m[13];
+			outptr[i * 16 + 14] = m[14];
+			outptr[i * 16 + 15] = m[15];
 		}
 	}
 }

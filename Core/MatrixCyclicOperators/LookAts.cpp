@@ -8,7 +8,6 @@ using namespace vmat;
 
 void LookAtCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd eye, vmat::Vector3SOAd target, vmat::Vector3SOAd up, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 	#pragma omp parallel if (threaded)
 	{
@@ -25,7 +24,6 @@ void LookAtCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat
 
 void LookToCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin, vmat::Vector3SOAd eye, vmat::Vector3SOAd eyedir, vmat::Vector3SOAd up, int totallength, bool threaded)
 {
-	result.SetSliceCount(totallength);
 	XMMATRIX* outptr = result.DataPointer;
 #pragma omp parallel if (threaded)
 	{
