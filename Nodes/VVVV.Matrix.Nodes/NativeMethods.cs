@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using VVVV.Hosting.IO.Pointers;
 
 namespace VVVV.Matrix.Nodes
 {
@@ -62,11 +63,10 @@ namespace VVVV.Matrix.Nodes
 
     public unsafe static class NativeMethods
     {
-        [DllImport("KERNEL32.DLL", CharSet=CharSet.Auto, EntryPoint="GetProcAddress", ExactSpelling=true)]
-        public static extern IntPtr GetProcAddress(IntPtr hModule, String lpProcName);
-
-        [DllImport("KERNEL32.DLL", CharSet=CharSet.Auto, EntryPoint="LoadLibrary")]
-        public static extern IntPtr LoadLibrary(String lpFileName);
+        public static int GetSliceCount(this FastValueInput input, int vectorsize)
+        {
+            return input.Length % vectorsize == 0 ? input.Length / vectorsize : input.Length / vectorsize + 1;
+        }
 
         [DllImport("MatrixCyclicOperators")]
         public static extern void Identity (MatrixPointer output);
@@ -80,16 +80,26 @@ namespace VVVV.Matrix.Nodes
         [DllImport("MatrixCyclicOperators")]
         public static extern void Free(IntPtr ptr);
 
-        /*[DllImport("MatrixCyclicOperators.dll")]
-        public static extern void TranslateCyclic(ref MatrixPointer result, Vector3SOAPointer vectors, int totallength, bool threaded);*/
-
         [DllImport("MatrixCyclicOperators.dll")]
         public static extern void TranslateCyclic(MatrixPointer result,MatrixPointer matrixin, Vector3SOAPointer vectors, int totallength, bool threaded);
 
         [DllImport("MatrixCyclicOperators.dll")]
-        public static extern void GetMatrix(DoublePointer output, MatrixPointer input, bool threaded);
+        public static extern void ScaleCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAPointer vectors, int totallength, bool threaded);
 
         [DllImport("MatrixCyclicOperators.dll")]
-        public static extern void Translate(DoublePointer output, MatrixPointer input, bool threaded);
+        public static extern void RotateCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAPointer vectors, int totallength, bool threaded);
+
+        [DllImport("MatrixCyclicOperators.dll")]
+        public static extern void TranslateVectorCyclic(MatrixPointer result,MatrixPointer matrixin, DoublePointer data, int totallength, bool threaded);
+
+        [DllImport("MatrixCyclicOperators.dll")]
+        public static extern void ScaleVectorCyclic(MatrixPointer result, MatrixPointer matrixin, DoublePointer data, int totallength, bool threaded);
+
+        [DllImport("MatrixCyclicOperators.dll")]
+        public static extern void RotateVectorCyclic(MatrixPointer result, MatrixPointer matrixin, DoublePointer data, int totallength, bool threaded);
+
+
+        [DllImport("MatrixCyclicOperators.dll")]
+        public static extern void GetMatrix(DoublePointer output, MatrixPointer input, bool threaded);
     }
 }

@@ -11,47 +11,61 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name = "Translate", Category = "Matrix", Version="Vector")]
-    public unsafe class TranslateVectorNode : IPluginEvaluate
+    [PluginInfo(Name = "Rotate", Category = "Matrix")]
+    public unsafe class RotateNode : IPluginEvaluate
     {
+        /*[Input("Transform In")]
+        protected MatrixInput TransformIn;*/
 
-        [Input("XYZ")]
-        protected FastValueInput trin;
+        [Input("X")]
+        protected FastValueInput X;
+
+        [Input("Y")]
+        protected FastValueInput Y;
+
+        [Input("Z")]
+        protected FastValueInput Z;
 
         [Input("Threaded", IsSingle=true)]
         protected ISpread<bool> Threaded;
+
+       /* [Input("Transform Out")]
+        protected MatrixOutput TransformOut;*/
 
         private MatrixInput input;
         private MatrixOutput output;
 
         [ImportingConstructor()]
-        public TranslateVectorNode(IPluginHost host)
+        public RotateNode(IPluginHost host)
         {
             this.input = new MatrixInput(host);
             this.output = new MatrixOutput(host);
         }
 
         public void Evaluate(int SpreadMax)
-        {
+        {       
             MatrixPointer min;
             if (this.input.IsConnected)
             {
                 min = this.input.Input;
+                
             }
             else
             {
                 min = MatrixPointer.Zero;
             }
 
-            DoublePointer dptr;
-            dptr.DataPointer = trin.Data;
-            dptr.DataLength = trin.Length;
-
-
+            Vector3SOAPointer soa = new Vector3SOAPointer();
+            soa.x = new IntPtr(X.Data);
+            soa.xcount = X.Length;
+            soa.y = new IntPtr(Y.Data);
+            soa.ycount = Y.Length;
+            soa.z = new IntPtr(Z.Data);
+            soa.zcount = Z.Length;
 
             this.output.SetSliceCount(SpreadMax);
             MatrixPointer ptr = this.output.Pointer;
-            NativeMethods.TranslateVectorCyclic(ptr, min, dptr, SpreadMax, this.Threaded[0]);
+            NativeMethods.RotateCyclic(ptr, min, soa, SpreadMax, this.Threaded[0]);
         }
     }
 }

@@ -13,7 +13,7 @@ void RotateCyclic(MatrixPointer result, Vector3SOAd vectors, int totallength, bo
 #pragma omp for
 		for (int i = 0; i < totallength; i++)
 		{
-			outptr[i] = XMMatrixRotationRollPitchYaw(vectors.SliceZ(i), vectors.SliceX(i), vectors.SliceY(i));
+			outptr[i] = XMMatrixRotationRollPitchYaw(vectors.SliceX(i)*XM_2PI, vectors.SliceY(i)*XM_2PI, vectors.SliceZ(i)*XM_2PI);
 		}
 	}
 }
@@ -32,7 +32,7 @@ void RotateCyclic(MatrixPointer result, MatrixPointer matrixin, Vector3SOAd vect
 #pragma omp for
 		for (int i = 0; i < totallength; i++)
 		{
-			outptr[i] = XMMatrixMultiply(XMMatrixRotationRollPitchYaw(vectors.SliceZ(i), vectors.SliceX(i), vectors.SliceY(i)), matrixin.GetSlice(i));
+			outptr[i] = XMMatrixMultiply(XMMatrixRotationRollPitchYaw(vectors.SliceX(i)*XM_2PI, vectors.SliceY(i)*XM_2PI, vectors.SliceZ(i))*XM_2PI, matrixin.GetSlice(i));
 		}
 	}
 }
@@ -49,7 +49,7 @@ void RotateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input,
 			for (int i = 0; i < totallength; i++)
 			{
 				Vector3d d = data[i];
-				outptr[i] = XMMatrixRotationRollPitchYaw(d.z, d.x, d.y);
+				outptr[i] = XMMatrixRotationRollPitchYaw(d.x*XM_2PI, d.y*XM_2PI, d.z*XM_2PI);
 			}
 		}
 	}
@@ -63,7 +63,7 @@ void RotateVectorCyclic(vmat::MatrixPointer result, vmat::Vector3dPointer input,
 #pragma omp for
 			for (int i = 0; i < totallength; i++)
 			{
-				outptr[i] = XMMatrixRotationRollPitchYaw(d[(i * 3+2) % l], d[(i * 3) % l], d[(i * 3 + 1) % l]);
+				outptr[i] = XMMatrixRotationRollPitchYaw(d[(i * 3) % l] * XM_2PI, d[(i * 3 + 1) % l] * XM_2PI, d[(i * 3 + 2) % l] * XM_2PI);
 			}
 		}
 	}
@@ -88,7 +88,7 @@ void RotateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin
 			for (int i = 0; i < totallength; i++)
 			{
 				Vector3d d = data[i%vcount];
-				outptr[i] = XMMatrixMultiply(XMMatrixRotationRollPitchYaw(d.z, d.x, d.y), matrixin.GetSlice(i));
+				outptr[i] = XMMatrixMultiply(XMMatrixRotationRollPitchYaw(d.x*XM_2PI, d.y*XM_2PI, d.z*XM_2PI), matrixin.GetSlice(i));
 			}
 		}
 	}
@@ -101,7 +101,7 @@ void RotateVectorCyclic(vmat::MatrixPointer result, vmat::MatrixPointer matrixin
 #pragma omp for
 			for (int i = 0; i < totallength; i++)
 			{
-				outptr[i] = XMMatrixMultiply(XMMatrixRotationRollPitchYaw(d[(i * 3 + 2) % l], d[(i * 3) % l], d[(i * 3 + 1) % l]), matrixin.GetSlice(i));
+				outptr[i] = XMMatrixMultiply(XMMatrixRotationRollPitchYaw(d[(i * 3) % l] * XM_2PI, d[(i * 3 + 1) % l] * XM_2PI, d[(i * 3 + 2) % l] * XM_2PI), matrixin.GetSlice(i));
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "DataTypes.h"
-
 #include <omp.h>
 
 #ifdef __cplusplus

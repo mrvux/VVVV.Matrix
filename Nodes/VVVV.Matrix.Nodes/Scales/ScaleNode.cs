@@ -11,21 +11,32 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Nodes
 {
-    [PluginInfo(Name = "Translate", Category = "Matrix", Version="Vector")]
-    public unsafe class TranslateVectorNode : IPluginEvaluate
+    [PluginInfo(Name = "Scale", Category = "Matrix")]
+    public unsafe class ScaleNode : IPluginEvaluate
     {
+        /*[Input("Transform In")]
+        protected MatrixInput TransformIn;*/
 
-        [Input("XYZ")]
-        protected FastValueInput trin;
+        [Input("X",DefaultValue=1)]
+        protected FastValueInput X;
+
+        [Input("Y", DefaultValue = 1)]
+        protected FastValueInput Y;
+
+        [Input("Z", DefaultValue = 1)]
+        protected FastValueInput Z;
 
         [Input("Threaded", IsSingle=true)]
         protected ISpread<bool> Threaded;
+
+       /* [Input("Transform Out")]
+        protected MatrixOutput TransformOut;*/
 
         private MatrixInput input;
         private MatrixOutput output;
 
         [ImportingConstructor()]
-        public TranslateVectorNode(IPluginHost host)
+        public ScaleNode(IPluginHost host)
         {
             this.input = new MatrixInput(host);
             this.output = new MatrixOutput(host);
@@ -43,15 +54,17 @@ namespace VVVV.Nodes
                 min = MatrixPointer.Zero;
             }
 
-            DoublePointer dptr;
-            dptr.DataPointer = trin.Data;
-            dptr.DataLength = trin.Length;
-
-
+            Vector3SOAPointer soa = new Vector3SOAPointer();
+            soa.x = new IntPtr(X.Data);
+            soa.xcount = X.Length;
+            soa.y = new IntPtr(Y.Data);
+            soa.ycount = Y.Length;
+            soa.z = new IntPtr(Z.Data);
+            soa.zcount = Z.Length;
 
             this.output.SetSliceCount(SpreadMax);
             MatrixPointer ptr = this.output.Pointer;
-            NativeMethods.TranslateVectorCyclic(ptr, min, dptr, SpreadMax, this.Threaded[0]);
+            NativeMethods.ScaleCyclic(ptr, min, soa, SpreadMax, this.Threaded[0]);
         }
     }
 }
